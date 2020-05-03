@@ -33,4 +33,11 @@ RUN yum install -y gcc-c++ make perl \
     && cmake -DWITH_CURL=OFF -DWITH_DYNCOL=OFF -DWITH_MYSQLCOMPAT=ON -DWITH_UNIT_TESTS=OFF . \
     && make -j$(nproc) install \
     && cd .. \
-    && rm -rf mariadb-connector-c-3.1.7-src.tar.gz mariadb-connector-c-3.1.7-src
+    && rm -rf mariadb-connector-c-3.1.7-src.tar.gz mariadb-connector-c-3.1.7-src \
+    \
+    && curl -LO https://github.com/redis/hiredis/archive/v0.14.1.tar.gz \
+    && tar xf v0.14.1.tar.gz \
+    && cd hiredis-0.14.1 \
+    && make -j$(nproc) install \
+    && cd ..\
+    && rm -rf hiredis-0.14.1 v0.14.1.tar.gz
